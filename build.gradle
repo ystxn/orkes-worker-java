@@ -19,3 +19,7 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
 }
+
+bootBuildImage {
+    imageName = "ghcr.io/ystxn/orkes-worker-java:latest"
+}
