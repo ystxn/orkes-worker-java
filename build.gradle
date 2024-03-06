@@ -21,5 +21,7 @@ dependencies {
 }
 
 bootBuildImage {
-    imageName = "ghcr.io/ystxn/orkes-worker-java:latest"
+    imageName = "$System.env.IMAGE_NAME"
+    pullPolicy = "IF_NOT_PRESENT"
+    publish = true
 }
