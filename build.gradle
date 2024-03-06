@@ -21,5 +21,11 @@ dependencies {
 }
 
 bootBuildImage {
-    imageName = "ghcr.io/ystxn/orkes-worker-java:latest"
+    pullPolicy = "IF_NOT_PRESENT"
+    docker {
+        publishRegistry {
+            username = "$System.env.DOCKER_USER"
+            password = "$System.env.DOCKER_PASS"
+        }
+    }
 }
