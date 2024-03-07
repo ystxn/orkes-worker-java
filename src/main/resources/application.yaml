@@ -1,6 +1,8 @@
-spring.main:
-  banner-mode: off
-  lazy-initialization: true
+spring:
+  profiles.active: dev
+  main:
+    banner-mode: off
+    lazy-initialization: true
 logging.level.org.apache.catalina.core: ERROR
 
 conductor:
