@@ -35,4 +35,4 @@ jobs:
 
       - run: echo "DOCKER_PASS=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
 
-      - run: ./gradlew bootBuildImage --imageName $IMAGE_NAME --publishImage
+      - run: ./gradlew -Dspring.profiles.active=prod bootBuildImage --imageName $IMAGE_NAME --publishImage
