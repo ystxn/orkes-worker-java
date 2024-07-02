@@ -1,8 +1,7 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.2.3'
+    id 'org.springframework.boot' version '3.3.0'
     id 'io.spring.dependency-management' version '1.1.4'
-    id 'org.graalvm.buildtools.native' version '0.10.1'
 }
 
 group = 'space.yong.orkes'
@@ -18,7 +17,7 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'io.orkes.conductor:orkes-conductor-client:2.1.0'
+    implementation 'io.orkes.conductor:orkes-conductor-client:2.1.1'
 }
 
 bootBuildImage {

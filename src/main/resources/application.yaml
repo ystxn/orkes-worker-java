@@ -2,8 +2,10 @@ spring:
   profiles.active: dev
   main:
     banner-mode: off
-    lazy-initialization: true
-logging.level.org.apache.catalina.core: ERROR
+logging.level:
+  ROOT: ERROR
+  io.orkes: INFO
+  space.yong: INFO
 
 conductor:
   server.url: https://play.orkes.io/api
