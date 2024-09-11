@@ -2,11 +2,10 @@ spring:
   profiles.active: dev
   main:
     banner-mode: off
-    lazy-initialization: true
 logging.level.org.apache.catalina.core: ERROR
 
 conductor:
-  server.url: https://play.orkes.io/api
+  server.url: ${ORKES_URI}
   security.client:
     key-id: ${ORKES_KEY_ID}
     secret: ${ORKES_SECRET}
