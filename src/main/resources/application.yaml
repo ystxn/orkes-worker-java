@@ -9,3 +9,6 @@ conductor:
   security.client:
     key-id: ${ORKES_KEY_ID}
     secret: ${ORKES_SECRET}
+  worker:
+    threadCount: 20
+    pollingInterval: 20
