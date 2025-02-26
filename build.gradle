@@ -18,9 +18,7 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.conductoross:conductor-client:4.0.1'
-    implementation 'org.conductoross:java-sdk:4.0.1'
-    implementation 'io.orkes.conductor:orkes-conductor-client:4.0.1'
+    implementation 'io.orkes.conductor:orkes-conductor-client-spring:4.0.6'
 }
 
 bootBuildImage {

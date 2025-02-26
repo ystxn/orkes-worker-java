@@ -3,7 +3,6 @@ package space.yong.orkes;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-//@SpringBootApplication(scanBasePackages = {"io.orkes", "space.yong.orkes"})
 @SpringBootApplication
 public class App {
     public static void main(String[] args) {
