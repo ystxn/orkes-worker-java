@@ -1,14 +1,12 @@
-spring:
-  profiles.active: dev
-  main:
-    banner-mode: off
-logging.level.org.apache.catalina.core: ERROR
-
 conductor:
   server.url: ${ORKES_URI}
   security.client:
     key-id: ${ORKES_KEY_ID}
     secret: ${ORKES_SECRET}
-  worker:
-    threadCount: 20
-    pollingInterval: 20
+
+spring.main.banner-mode: off
+logging.level:
+  org.apache.catalina.core: ERROR
+  org.springframework.boot.web.embedded.tomcat: ERROR
+  org.springframework.boot.web.servlet.context: ERROR
+  com.netflix.conductor.client.automator: ERROR

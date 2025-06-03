@@ -1,15 +1,15 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.3.2'
-    id 'io.spring.dependency-management' version '1.1.6'
-    id 'io.freefair.lombok' version '8.7.1'
+    id 'org.springframework.boot' version '3.5.0'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'io.freefair.lombok' version '8.13.1'
 }
 
 group = 'space.yong.orkes'
 version = '1.0'
 
 java {
-    sourceCompatibility = '17'
+    sourceCompatibility = '21'
 }
 
 repositories {
@@ -17,8 +17,9 @@ repositories {
 }
 
 dependencies {
+    implementation 'io.orkes.conductor:orkes-conductor-client-spring:4.0.8'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'io.orkes.conductor:orkes-conductor-client-spring:4.0.6'
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
 }
 
 bootBuildImage {
