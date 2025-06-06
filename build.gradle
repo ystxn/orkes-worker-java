@@ -5,6 +5,10 @@ plugins {
     id 'io.freefair.lombok' version '8.13.1'
 }
 
+lombok {
+    version = '1.18.38'
+}
+
 group = 'space.yong.orkes'
 version = '1.0'
 
@@ -20,14 +24,16 @@ dependencies {
     implementation 'io.orkes.conductor:orkes-conductor-client-spring:4.0.8'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation "org.testcontainers:testcontainers:1.21.1"
+    testImplementation "org.testcontainers:junit-jupiter:1.21.1"
 }
 
 bootBuildImage {
     pullPolicy = "IF_NOT_PRESENT"
     docker {
         publishRegistry {
-            username = "$System.env.DOCKER_USER"
-            password = "$System.env.DOCKER_PASS"
+            username = System.getenv("DOCKER_USER")
+            password = System.getenv("DOCKER_PASS")
         }
     }
 }
