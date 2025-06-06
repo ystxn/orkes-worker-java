@@ -1,0 +1,6 @@
+spring.main.banner-mode: off
+logging.level:
+  org.apache.catalina.core: ERROR
+  org.springframework.boot.web.embedded.tomcat: ERROR
+  org.springframework.boot.web.servlet.context: ERROR
+  com.netflix.conductor.client.automator: ERROR
