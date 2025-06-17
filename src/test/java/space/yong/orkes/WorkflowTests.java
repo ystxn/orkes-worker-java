@@ -23,4 +23,27 @@ public class WorkflowTests extends BaseTest {
         Workflow workflow = workflowClient.testWorkflow(testRequest);
         assertEquals(3.14159, workflow.getOutput().get("result"));
     }
+
+    @Test
+    public void testDynamicForkWorkflow() {
+        metadataClient.registerWorkflowDef(Util.getSubFlow("sub-flow"));
+
+        WorkflowTestRequest subRequest = new WorkflowTestRequest();
+        subRequest.setName("sub-flow");
+        subRequest.setTaskRefToMockOutput(Map.of(
+            "simple_ref", List.of(new TaskMock(COMPLETED, Map.of("result", 3.14159)))
+        ));
+
+        WorkflowTestRequest testRequest = new WorkflowTestRequest();
+        testRequest.setName("dynamic-fork-flow");
+        testRequest.setWorkflowDef(Util.getDynamicForkWorkflow("dynamic-fork-flow"));
+        testRequest.setSubWorkflowTestRequest(Map.of(
+            "_fork_join_dynamic_ref_0", subRequest,
+            "_fork_join_dynamic_ref_1", subRequest,
+            "_fork_join_dynamic_ref_2", subRequest,
+            "_fork_join_dynamic_ref_3", subRequest
+        ));
+        Workflow workflow = workflowClient.testWorkflow(testRequest);
+        assertEquals(12.56636, workflow.getOutput().get("result"));
+    }
 }

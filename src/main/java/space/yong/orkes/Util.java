@@ -6,6 +6,49 @@ import java.util.List;
 import java.util.Map;
 
 public class Util {
+    public static WorkflowDef getSubFlow(String workflowName) {
+        WorkflowTask simple = new WorkflowTask();
+        simple.setName("simple");
+        simple.setTaskReferenceName("simple_ref");
+        simple.setType("SIMPLE");
+
+        WorkflowDef workflowDef = new WorkflowDef();
+        workflowDef.setName(workflowName);
+        workflowDef.setTasks(List.of(simple));
+        return workflowDef;
+    }
+
+    public static WorkflowDef getDynamicForkWorkflow(String workflowName) {
+        WorkflowTask dynamicFork = new WorkflowTask();
+        dynamicFork.setName("fork_join_dynamic");
+        dynamicFork.setTaskReferenceName("fork_join_dynamic_ref");
+        dynamicFork.setType("FORK_JOIN_DYNAMIC");
+        dynamicFork.setInputParameters(Map.of(
+            "forkTaskWorkflow", "sub-flow",
+            "forkTaskInputs", List.of(Map.of(), Map.of(), Map.of(), Map.of())
+        ));
+
+        WorkflowTask dynamicJoin = new WorkflowTask();
+        dynamicJoin.setName("join");
+        dynamicJoin.setTaskReferenceName("join_ref");
+        dynamicJoin.setType("JOIN");
+
+        WorkflowTask inline = new WorkflowTask();
+        inline.setName("inline");
+        inline.setTaskReferenceName("inline_ref");
+        inline.setType("INLINE");
+        inline.setInputParameters(Map.of(
+            "expression", "(() => [0, 1, 2, 3].map(i => $.data['_fork_join_dynamic_ref_' + i].result).reduce((a, b) => a + b, 0))();",
+            "evaluatorType", "graaljs",
+            "data", "${join_ref.output}"
+        ));
+
+        WorkflowDef workflowDef = new WorkflowDef();
+        workflowDef.setName(workflowName);
+        workflowDef.setTasks(List.of(dynamicFork, dynamicJoin, inline));
+        return workflowDef;
+    }
+
     public static WorkflowDef getWorkflowDef(String workflowName) {
         WorkflowTask lookupPersonTask = new WorkflowTask();
         lookupPersonTask.setName("lookup-person");

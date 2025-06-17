@@ -1,5 +1,6 @@
 package space.yong.orkes;
 
+import io.orkes.conductor.client.http.OrkesMetadataClient;
 import io.orkes.conductor.client.http.OrkesWorkflowClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public abstract class BaseTest {
 
     @Autowired
     public OrkesWorkflowClient workflowClient;
+
+    @Autowired
+    public OrkesMetadataClient metadataClient;
 
     @Container
     static GenericContainer<?> orkes = new GenericContainer<>(ORKES_IMAGE)
